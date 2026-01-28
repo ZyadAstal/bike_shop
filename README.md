@@ -132,4 +132,3 @@ php artisan serve
 
 ---
 
-**تم التطوير بواسطة:** Antigravity AI
