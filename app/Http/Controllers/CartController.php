@@ -6,9 +6,6 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
-    /**
-     * Display the cart.
-     */
     public function index()
     {
         $cart = session()->get('cart', []);
@@ -17,9 +14,6 @@ class CartController extends Controller
         return view('pages.cart', compact('cart', 'total'));
     }
 
-    /**
-     * Add product to cart.
-     */
     public function add(Request $request)
     {
         $productId = $request->product_id;
@@ -44,9 +38,6 @@ class CartController extends Controller
         return back()->with('success', 'Product added to cart!');
     }
 
-    /**
-     * Update cart item quantity.
-     */
     public function update(Request $request)
     {
         $cart = session()->get('cart', []);
@@ -59,9 +50,6 @@ class CartController extends Controller
         return back()->with('success', 'Cart updated!');
     }
 
-    /**
-     * Remove item from cart.
-     */
     public function remove($productId)
     {
         $cart = session()->get('cart', []);
@@ -74,18 +62,12 @@ class CartController extends Controller
         return back()->with('success', 'Item removed from cart!');
     }
 
-    /**
-     * Clear the cart.
-     */
     public function clear()
     {
         session()->forget('cart');
         return back()->with('success', 'Cart cleared!');
     }
 
-    /**
-     * Calculate cart total.
-     */
     protected function calculateTotal($cart)
     {
         $total = 0;

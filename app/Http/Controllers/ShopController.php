@@ -8,19 +8,16 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    /**
-     * Display shop page with products.
-     */
     public function index(Request $request)
     {
         $query = Product::query()->with('category');
 
-        // Filter by category
+
         if ($request->filled('category')) {
             $query->where('category_id', $request->category);
         }
 
-        // Filter by price range
+
         if ($request->filled('min_price')) {
             $query->where('price', '>=', $request->min_price);
         }
@@ -28,12 +25,12 @@ class ShopController extends Controller
             $query->where('price', '<=', $request->max_price);
         }
 
-        // Search by name
+
         if ($request->filled('search')) {
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        // Sort
+
         $sort = $request->get('sort', 'latest');
         switch ($sort) {
             case 'price_asc':
@@ -55,9 +52,6 @@ class ShopController extends Controller
         return view('pages.shop', compact('products', 'categories'));
     }
 
-    /**
-     * Display single product.
-     */
     public function show($slug)
     {
         $product = Product::where('slug', $slug)->with('category')->firstOrFail();

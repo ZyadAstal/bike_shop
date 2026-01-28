@@ -10,27 +10,18 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    /**
-     * Display products list.
-     */
     public function index()
     {
         $products = Product::with('category')->latest()->paginate(15);
         return view('admin.products.index', compact('products'));
     }
 
-    /**
-     * Show create form.
-     */
     public function create()
     {
         $categories = Category::all();
         return view('admin.products.create', compact('categories'));
     }
 
-    /**
-     * Store new product.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -59,18 +50,12 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully!');
     }
 
-    /**
-     * Show edit form.
-     */
     public function edit(Product $product)
     {
         $categories = Category::all();
         return view('admin.products.edit', compact('product', 'categories'));
     }
 
-    /**
-     * Update product.
-     */
     public function update(Request $request, Product $product)
     {
         $validated = $request->validate([
@@ -99,9 +84,6 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('success', 'Product updated successfully!');
     }
 
-    /**
-     * Delete product.
-     */
     public function destroy(Product $product)
     {
         $product->delete();

@@ -9,18 +9,12 @@ use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display categories list.
-     */
     public function index()
     {
         $categories = Category::withCount('products')->get();
         return view('admin.categories.index', compact('categories'));
     }
 
-    /**
-     * Store new category.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -42,9 +36,6 @@ class CategoryController extends Controller
         return back()->with('success', 'Category created successfully!');
     }
 
-    /**
-     * Update category.
-     */
     public function update(Request $request, Category $category)
     {
         $validated = $request->validate([
@@ -66,9 +57,6 @@ class CategoryController extends Controller
         return back()->with('success', 'Category updated successfully!');
     }
 
-    /**
-     * Delete category.
-     */
     public function destroy(Category $category)
     {
         if ($category->products()->count() > 0) {

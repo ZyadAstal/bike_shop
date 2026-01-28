@@ -10,9 +10,6 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    /**
-     * Show admin dashboard.
-     */
     public function index()
     {
         $totalProducts = Product::count();

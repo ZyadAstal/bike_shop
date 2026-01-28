@@ -9,26 +9,17 @@ use Illuminate\Support\Str;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of blog posts.
-     */
     public function index()
     {
         $posts = BlogPost::with('author')->latest()->paginate(10);
         return view('admin.blog.index', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new blog post.
-     */
     public function create()
     {
         return view('admin.blog.form');
     }
 
-    /**
-     * Store a newly created blog post in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -54,17 +45,11 @@ class BlogController extends Controller
         return redirect()->route('admin.blog.index')->with('success', 'Blog post created successfully!');
     }
 
-    /**
-     * Show the form for editing the specified blog post.
-     */
     public function edit(BlogPost $blog)
     {
         return view('admin.blog.form', ['post' => $blog]);
     }
 
-    /**
-     * Update the specified blog post in storage.
-     */
     public function update(Request $request, BlogPost $blog)
     {
         $validated = $request->validate([
@@ -89,9 +74,6 @@ class BlogController extends Controller
         return redirect()->route('admin.blog.index')->with('success', 'Blog post updated successfully!');
     }
 
-    /**
-     * Remove the specified blog post from storage.
-     */
     public function destroy(BlogPost $blog)
     {
         $blog->delete();

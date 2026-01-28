@@ -9,9 +9,6 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Show the home page.
-     */
     public function index()
     {
         $categories = Category::take(6)->get();
