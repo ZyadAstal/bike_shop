@@ -97,11 +97,11 @@
                                         </div>
                                     @endif
                                     
-                                    <a href="{{ route('product.show', $product->slug) }}" class="block w-full h-full group-hover:scale-110 transition duration-300">
+                                    <a href="{{ route('product.show', $product->slug) }}" class="block w-full h-full group-hover:scale-110 transition duration-300 flex items-center justify-center p-4 bg-gray-50">
                                         @if($product->image)
-                                            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                                            <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="max-h-full max-w-full object-contain">
                                         @else
-                                            <div class="flex items-center justify-center h-full bg-gradient-to-br from-gray-100 to-gray-300">
+                                            <div class="flex items-center justify-center h-full">
                                                 <i class="fas fa-bicycle text-gray-400 text-5xl"></i>
                                             </div>
                                         @endif

@@ -20,7 +20,7 @@
 
             <!-- Article -->
             <article class="bg-white rounded-xl shadow-lg overflow-hidden mb-12">
-                <div class="h-64 sm:h-96 bg-gray-200 relative overflow-hidden">
+                <div class="h-[300px] md:h-[500px] bg-gray-200 relative overflow-hidden">
                     @if($post->image)
                         <img src="{{ asset($post->image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
                     @else

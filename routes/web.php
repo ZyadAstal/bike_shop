@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogController as AdminBlogController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\OrderController as AdminOrderController;
@@ -102,6 +103,9 @@ Route::middleware(['auth', 'checkRole:admin'])->prefix('admin')->name('admin.')-
     
     // Categories
     Route::resource('categories', AdminCategoryController::class)->except(['create', 'edit', 'show']);
+
+    // Blog
+    Route::resource('blog', AdminBlogController::class);
 
     // Orders
     Route::get('/orders', [AdminOrderController::class, 'index'])->name('orders.index');

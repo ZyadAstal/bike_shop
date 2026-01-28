@@ -43,11 +43,11 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($categories as $category)
                 <div class="card group">
-                    <div class="h-48 bg-gradient-to-br from-green-400 to-green-600 relative overflow-hidden">
+                    <div class="h-48 bg-gray-50 relative overflow-hidden flex items-center justify-center p-4">
                         @if($category->image)
-                            <img src="{{ asset($category->image) }}" alt="{{ $category->name }}" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                            <img src="{{ asset($category->image) }}" alt="{{ $category->name }}" class="max-h-full max-w-full object-contain group-hover:scale-110 transition duration-300">
                         @else
-                            <div class="absolute inset-0 flex items-center justify-center">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-green-400 to-green-600">
                                 <i class="fas fa-bicycle text-white text-6xl opacity-20"></i>
                             </div>
                         @endif
@@ -77,18 +77,17 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             @foreach($featuredProducts as $product)
                 <div class="card group">
-                    <div class="relative overflow-hidden h-64 bg-gray-200">
+                    <div class="h-64 bg-gray-50 relative overflow-hidden flex items-center justify-center p-6">
                         @if($product->hasDiscount())
                             <div class="absolute top-4 left-4 bg-red-500 text-white px-3 py-1 rounded-full font-bold text-sm z-10">
                                 خصم {{ round((($product->price - $product->discount_price) / $product->price) * 100) }}%
                             </div>
                         @endif
-                        
-                        <a href="{{ route('product.show', $product->slug) }}" class="block w-full h-full group-hover:scale-110 transition duration-300">
+                        <a href="{{ route('product.show', $product->slug) }}" class="block w-full h-full group-hover:scale-110 transition duration-300 flex items-center justify-center">
                             @if($product->image)
-                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover">
+                                <img src="{{ asset($product->image) }}" alt="{{ $product->name }}" class="max-h-full max-w-full object-contain">
                             @else
-                                <div class="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-300">
+                                <div class="absolute inset-0 flex items-center justify-center">
                                     <i class="fas fa-bicycle text-gray-400 text-6xl"></i>
                                 </div>
                             @endif
